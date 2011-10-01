@@ -38,4 +38,14 @@ Chance Organisms will choose the same color even if there is an organism with an
 
 ## Fitness
 
-I guess fitness would be determined by longevity and strength.. hmm there should be one more thing in here. Fitness will be used only for choosing a mate.
+Fitness is generally figured as Base Longevity + Strength. During breeding, the organism with the best fitness may not always be choosen from the pool of available organisms due to preference.
+
+## Mutations
+
+* Substitution
+* Insertion
+* Deletion
+
+## Cross-over
+
+Given a gene from p1 and one from p2. If both genes add up to be an even number then p1 is selected, if both add up to be odd then p2 is selected. If one is even and the other is odd there is a 50% chance either will be selected.
