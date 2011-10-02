@@ -6,6 +6,6 @@ class LongevityStrengthFitness implements Fitness {
     }
 
     Integer get() {
-        organism.genome.genes.baseLongevity.encodingNumber + organism.genome.genes.strength.encodingNumber
+        organism.genome.get('baseLongevity').encodingNumber + organism.genome.get('strength').encodingNumber
     }
 }
