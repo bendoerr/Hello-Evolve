@@ -30,7 +30,7 @@ class Simulation {
             println "Size: ${population.size()}"
             println "----"
             population.each {
-                println "$it.fitness $it.life $it.chanceToEat $it.color $it.colorPref $it.genome.dna"
+                println "$it.fitness $it.life $it.baseLife $it.chanceToEat $it.color $it.colorPref $it.genome.dna"
             }
             println "================"
             if(population.isDead()) break

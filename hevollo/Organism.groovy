@@ -4,6 +4,8 @@ class Organism {
     Fitness fitStrat
 
     Integer life
+
+    Integer baseLife
     BigDecimal chanceToEat
     String color
     BigDecimal colorPref
@@ -11,11 +13,12 @@ class Organism {
     Organism() {
       if(!genome) genome = new Genome()
 
-      life = genome.get('baseLongevity').encodedTrait
+      baseLife = genome.get('baseLongevity').encodedTrait
       chanceToEat = genome.get('strength').encodedTrait
       color = genome.get('color').encodedTrait
       colorPref = genome.get('colorPref').encodedTrait
 
+      life = baseLife
       fitStrat = new LongevityStrengthFitness(this)
     }
 
