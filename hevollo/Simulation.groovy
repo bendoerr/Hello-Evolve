@@ -27,7 +27,12 @@ class Simulation {
         while(!stopped) {
             generation++
             population.cycle()
-            println population.size()
+            println "Size: ${population.size()}"
+            println "----"
+            population.each {
+                println "$it.fitness $it.life $it.chanceToEat $it.color $it.colorPref $it.genome.dna"
+            }
+            println "================"
             if(population.isDead()) break
         }
         println "Press ENTER to exit."
