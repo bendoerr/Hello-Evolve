@@ -1,5 +1,7 @@
 class Simulation {
     StopSimulation stopped
+    Integer generation
+    Population population
 
     public static void main(String[] args) {
         bootstrap()
@@ -22,17 +24,14 @@ class Simulation {
     }
 
     void loop() {
-        Population population = new Population(options['population'])
-        Integer generation = 0
+        population = new Population(options['population'])
+        generation = 0
+        def display = new SimplePopulationDisplay()
+        display.render(this)
         while(!stopped) {
             generation++
             population.cycle()
-            println "Size: ${population.size()}"
-            println "----"
-            population.each {
-                println "$it.fitness $it.life $it.baseLife $it.chanceToEat $it.color $it.colorPref $it.genome.dna"
-            }
-            println "================"
+            display.render(this)
             if(population.isDead()) break
         }
         println "Press ENTER to exit."
