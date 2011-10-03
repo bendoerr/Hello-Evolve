@@ -17,5 +17,8 @@ class SimRandom {
         return i < (100 * chanceTrue)
     }
 
+    Integer getInt(Integer max) {
+        rand.nextInt(max)
+    }
 }
 

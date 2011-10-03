@@ -1,4 +1,4 @@
-class Organism {
+class Organism implements Comparable<Organism> {
 
     Genome genome
     Fitness fitStrat
@@ -11,8 +11,16 @@ class Organism {
     BigDecimal colorPref
 
     Organism() {
-      if(!genome) genome = new Genome()
+      genome = new Genome()
+      initialize()
+    }
 
+    Organism(String dna) {
+        genome = new Genome(dna)
+        initialize()
+    }
+
+    protected void initialize() {
       baseLife = genome.get('baseLongevity').encodedTrait
       chanceToEat = genome.get('strength').encodedTrait
       color = genome.get('color').encodedTrait
@@ -34,6 +42,10 @@ class Organism {
 
     Boolean isDead() {
         life <= 0
+    }
+
+    int compareTo(Organism other) {
+        fitness <=> other.fitness
     }
 
     Integer getFitness() {

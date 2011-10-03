@@ -6,7 +6,13 @@ abstract class Gene {
     String dnaSequance
     Integer encodingNumber
 
+    Gene() {}
+
     Gene(Genome owner) {
+        initialize(owner)
+    }
+
+    protected void initialize(Genome owner) {
         dnaSequance = owner.dna[getStartIndex()..getEndIndex()]
         encodingNumber = calculateEncoding()
     }
