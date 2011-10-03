@@ -1,3 +1,17 @@
+# Vim
 .*.sw[a-z]
 *.un~
 Session.vim
+
+# Java/Groovy
+target
+*.class
+*.jar
+*.war
+*.ear
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea
