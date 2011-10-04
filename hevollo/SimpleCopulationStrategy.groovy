@@ -1,4 +1,4 @@
-class BasicCopulationStrategy implements CopulationStrategy {
+class SimpleCopulationStrategy implements CopulationStrategy {
 
     List<Organism> getChildren(Mates mates) {
         if (random.getBoolean(0.20)) return []

@@ -11,7 +11,7 @@ class SimplePopulationDisplay implements Display {
         sb << "Size:".padRight(15) + pop.size() + "\n"
         sb << ("-" * 83) + "\n"
 
-        pop.each {
+        pop.clone().sort { it.fitness }.each {
             StringBuffer lb = new StringBuffer()
             lb << "$it.fitness".padRight(5)
             lb << "$it.baseLife".padRight(2)

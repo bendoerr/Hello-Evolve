@@ -20,5 +20,9 @@ class SimRandom {
     Integer getInt(Integer max) {
         rand.nextInt(max)
     }
+
+    Float getFraction() {
+        rand.nextFloat()
+    }
 }
 

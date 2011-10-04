@@ -1,6 +1,7 @@
 @Mixin(ArrayList)
 class Population {
 
+    BigDecimal lastGrowthRate
     PairStrategy pairing
     CopulationStrategy copulation
 
@@ -12,9 +13,13 @@ class Population {
                 pairing = new SimplePairStrategy()
         }
 
-        switch (options['copulationStrategy', 'basic']) {
-            case 'basic':
-                copulation = new BasicCopulationStrategy()
+        switch (options['copulationStrategy', 'growthRateAware']) {
+            case 'simple':
+                copulation = new SimpleCopulationStrategy()
+                break
+            case 'growthRateAware':
+                copulation = new GrowthRateAwareCopulationStrategy(this)
+                break
         }
     }
 
@@ -35,6 +40,8 @@ class Population {
             children.addAll copulation.getChildren(mates)
         }
 
+        Integer startSize = size()
+
         // Die
         removeAll inject([]) {dead, organism ->
             organism.die()
@@ -44,7 +51,9 @@ class Population {
             dead
         }
 
-        println "!!!!!!!!!!!!!!!! ${size()} left and adding ${children.size()}"
+        Integer change = size() - startSize + children.size()
+        lastGrowthRate = change / startSize
+        println "!!!!!!!!!!!!!!!! ${size()} left and adding ${children.size()} [change $change] and rate of $lastGrowthRate"
         // New Life
         addAll children
     }
