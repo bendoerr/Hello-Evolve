@@ -9,7 +9,7 @@ class Simulation {
         StartOptions opts = StartOptions.getInstance()
         opts.initialize(args)
 
-        if(opts.isInvalid()) return
+        if (opts.isInvalid()) return
 
         new Simulation().loop()
     }
@@ -28,11 +28,11 @@ class Simulation {
         generation = 0
         def display = new SimplePopulationDisplay()
         display.render(this)
-        while(!stopped) {
+        while (!stopped) {
             generation++
             population.cycle()
             display.render(this)
-            if(population.isDead()) break
+            if (population.isDead()) break
         }
         println "Press ENTER to exit."
     }

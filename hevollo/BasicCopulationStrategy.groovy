@@ -1,12 +1,12 @@
 class BasicCopulationStrategy implements CopulationStrategy {
 
     List<Organism> getChildren(Mates mates) {
-        if(random.getBoolean(0.20)) return []
+        if (random.getBoolean(0.20)) return []
 
         List p1Genes = mates.parent1.genome.ordered()
         List p2Genes = mates.parent2.genome.ordered()
 
-        String newDna = (0..p1Genes.size()-1).inject("") {dna,i->
+        String newDna = (0..p1Genes.size() - 1).inject("") {dna, i ->
             dna << crossover(p1Genes[i], p2Genes[i])
         }
 
@@ -17,7 +17,7 @@ class BasicCopulationStrategy implements CopulationStrategy {
         Boolean p1even = (p1.encodingNumber % 2) == 0
         Boolean p2even = (p2.encodingNumber % 2) == 0
 
-        if(p1 && p2) {
+        if (p1 && p2) {
             return p1.dnaSequance
         } else if (!p1 && !p2) {
             return p2.dnaSequance

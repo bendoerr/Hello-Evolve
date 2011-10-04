@@ -8,7 +8,7 @@ class Mates extends AbstractMap.SimpleImmutableEntry<Organism, Organism> {
     }
 
     Organism getParent2() {
-        return getValue() 
+        return getValue()
     }
 }
 

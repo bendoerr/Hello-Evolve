@@ -1,5 +1,6 @@
 abstract class Gene {
     abstract Integer getStartIndex()
+
     abstract Integer getEndIndex()
 
     Transformation encodingTransformation
@@ -18,7 +19,7 @@ abstract class Gene {
     }
 
     protected Integer calculateEncoding() {
-        dnaSequance.inject(0) {encoding, base->
+        dnaSequance.inject(0) {encoding, base ->
             encoding + Genome.BASES.indexOf(base) + 1
         }
     }

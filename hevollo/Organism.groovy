@@ -11,8 +11,8 @@ class Organism implements Comparable<Organism> {
     BigDecimal colorPref
 
     Organism() {
-      genome = new Genome()
-      initialize()
+        genome = new Genome()
+        initialize()
     }
 
     Organism(String dna) {
@@ -21,17 +21,17 @@ class Organism implements Comparable<Organism> {
     }
 
     protected void initialize() {
-      baseLife = genome.get('baseLongevity').encodedTrait
-      chanceToEat = genome.get('strength').encodedTrait
-      color = genome.get('color').encodedTrait
-      colorPref = genome.get('colorPref').encodedTrait
+        baseLife = genome.get('baseLongevity').encodedTrait
+        chanceToEat = genome.get('strength').encodedTrait
+        color = genome.get('color').encodedTrait
+        colorPref = genome.get('colorPref').encodedTrait
 
-      life = baseLife
-      fitStrat = new LongevityStrengthFitness(this)
+        life = baseLife
+        fitStrat = new LongevityStrengthFitness(this)
     }
 
     void eat() {
-        if(!random.getBoolean(chanceToEat)) {
+        if (!random.getBoolean(chanceToEat)) {
             life--
         }
     }

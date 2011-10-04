@@ -3,7 +3,9 @@ class JunkGene extends Gene {
     private Integer endIndex
 
     Integer getStartIndex() { startIndex }
+
     Integer getEndIndex() { endIndex }
+
     Object getEncodedTrait() { null }
 
     JunkGene(Genome owner, IntRange range) {

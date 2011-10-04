@@ -31,13 +31,13 @@ class Genome {
         put('colorPref', new ColorPrefGene(this))
 
         // Junk genes
-        [0..2, 13..15, 26..28, 39..41, 52..54].eachWithIndex {range, i->
+        [0..2, 13..15, 26..28, 39..41, 52..54].eachWithIndex {range, i ->
             put("junk$i", new JunkGene(this, range))
         }
     }
 
     List<Gene> ordered() {
-        values().sort { it.getStartIndex() } 
+        values().sort { it.getStartIndex() }
     }
 }
 

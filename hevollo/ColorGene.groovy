@@ -1,5 +1,6 @@
 final class ColorGene extends Gene {
     Integer getStartIndex() { 29 }
+
     Integer getEndIndex() { 38 }
 
     ColorGene(Genome owner) {

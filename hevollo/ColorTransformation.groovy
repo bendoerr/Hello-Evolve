@@ -1,4 +1,5 @@
-import groovy.transform.*
+import groovy.transform.InheritConstructors
+
 @InheritConstructors
 class ColorTransformation extends Transformation<ColorTrait> {
     IntRange redRange = options['colorRedMin']..options['colorRedMax']
@@ -10,13 +11,13 @@ class ColorTransformation extends Transformation<ColorTrait> {
     IntRange violetRange = options['colorVioletMin']..options['colorVioletMax']
 
     ColorTrait getTrait() {
-        if(redRange.containsWithinBounds(encodingNumber)) return ColorTrait.RED
-        if(orangeRange.containsWithinBounds(encodingNumber)) return ColorTrait.ORANGE
-        if(yellowRange.containsWithinBounds(encodingNumber)) return ColorTrait.YELLOW
-        if(greenRange.containsWithinBounds(encodingNumber)) return ColorTrait.BLUE
-        if(blueRange.containsWithinBounds(encodingNumber)) return ColorTrait.GREEN
-        if(indigoRange.containsWithinBounds(encodingNumber)) return ColorTrait.INDIGO
-        if(violetRange.containsWithinBounds(encodingNumber)) return ColorTrait.VIOLET
+        if (redRange.containsWithinBounds(encodingNumber)) return ColorTrait.RED
+        if (orangeRange.containsWithinBounds(encodingNumber)) return ColorTrait.ORANGE
+        if (yellowRange.containsWithinBounds(encodingNumber)) return ColorTrait.YELLOW
+        if (greenRange.containsWithinBounds(encodingNumber)) return ColorTrait.BLUE
+        if (blueRange.containsWithinBounds(encodingNumber)) return ColorTrait.GREEN
+        if (indigoRange.containsWithinBounds(encodingNumber)) return ColorTrait.INDIGO
+        if (violetRange.containsWithinBounds(encodingNumber)) return ColorTrait.VIOLET
     }
 }
 
