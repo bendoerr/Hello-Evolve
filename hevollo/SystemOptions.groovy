@@ -1,5 +1,5 @@
 @Singleton
-class StartOptions {
+class SystemOptions {
 
     private OptionAccessor options
 
@@ -79,10 +79,28 @@ class StartOptions {
             windowsColors: Boolean,
     ]
 
-    StartOptions() {
+    SystemOptions() {
+        String header = """\n
+Description
+=========================================================================
+Hevollo is a super simple life simulator. Insipired by simple 'Hello World' evolutionary algorithms.
++
+Organisms exist in populations They only have a few basic attributes: life, strength and color. Each Organism has a dna sequence which is represented as a String of characters (a-zA-Z0-9). These strings are divided up into groups which represent the gene for each trait.
++
+Usage
+=========================================================================
+Other than the options described below.
++
+Configure chance of trait
+-------------------------------------------------------------------------
+There are currently 4 traits: 'baseLongevity', 'strength', 'color', and 'colorPref' coding sequences for each of these traits are 10 characters long. To determine the trait that they code for each character (base) is assiged a number based on it's index (a=1, b=2, ..., A=27, ..., 0=53, ..., 9=62). The minimum value a trait could have is 10 while the maximum value a trait can have is 620. The reason for this is to form a gaussian/normal function with a mean of 315 and a standard deviation of 56.5. The allows us to specify specific ranges and have chance of a specifc encoding be very rare towards the edges and very common towards the center.
++
+Options
+-------------------------------------------------------------------------
+"""
         Map usage = [
                 usage: 'Simulation [options]',
-                header: 'Test header',
+                header: header,
                 footer: 'Test footer']
         cli = new CliBuilder(usage)
 

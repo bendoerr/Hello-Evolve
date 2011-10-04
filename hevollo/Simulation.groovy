@@ -6,7 +6,7 @@ class Simulation {
     public static void main(String[] args) {
         bootstrap()
 
-        StartOptions opts = StartOptions.getInstance()
+        SystemOptions opts = SystemOptions.getInstance()
         opts.initialize(args)
 
         if (opts.isInvalid()) return
@@ -15,7 +15,7 @@ class Simulation {
     }
 
     static void bootstrap() {
-        Object.metaClass.getOptions {-> StartOptions.getInstance() }
+        Object.metaClass.getOptions {-> SystemOptions.getInstance() }
         Object.metaClass.getRandom {-> SimRandom.getInstance() }
     }
 
