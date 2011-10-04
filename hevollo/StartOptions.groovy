@@ -39,6 +39,7 @@ class StartOptions {
             colorIndigoMax: 419,
             colorVioletMin: 420,
             colorVioletMax: 620,
+            windowsColors: false,
     ]
 
     private Map types = [
@@ -75,6 +76,7 @@ class StartOptions {
             colorIngigoMax: Integer,
             colorVioletMin: Integer,
             colorVioletMax: Integer,
+            windowsColors: Boolean,
     ]
 
     StartOptions() {
@@ -86,7 +88,7 @@ class StartOptions {
 
         cli.h longOpt: 'help', 'Prints this help message'
         cli._ longOpt: 'population', args: 1, argName: 'size', 'The size of the initial population. Default is 100'
-
+        cli._ longOpt: 'windowsColors', 'Use this option to hide color escape codes on windows when using one of the console displays. The dos console doesn\'t support ansi escape sequences.'
     }
 
     void initialize(String[] args) {

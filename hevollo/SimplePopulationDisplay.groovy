@@ -27,6 +27,8 @@ class SimplePopulationDisplay implements Display {
     }
 
     String color(String color, def s) {
+        if(windowsColors) return s
+        
         Map colors = [
                 red: '[1;31m',
                 orange: '[0;31m',
