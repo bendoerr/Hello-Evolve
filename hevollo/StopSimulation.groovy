@@ -1,12 +1,13 @@
-class StopSimulation {
-    private Thread waitForInput
+@Singleton(lazy=true)
+class SimulationStopped {
+    private isStopped = false
 
     StopSimulation() {
-        waitForInput = new Thread({System.console().readLine()})
-        waitForInput.start()
+	Closure callback = { isStopped = true }
+        simulationInput.registarCallback('q', callback)
     }
 
     boolean asBoolean() {
-        return !waitForInput.isAlive()
+        return isStopped
     }
 }
