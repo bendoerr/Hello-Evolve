@@ -1,3 +1,0 @@
-interface Fitness {
-    Integer get()
-}
