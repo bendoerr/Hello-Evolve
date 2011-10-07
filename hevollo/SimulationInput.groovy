@@ -7,15 +7,16 @@ class SimulationInput {
 	ConcurrentLinkedQueue<String> input
 	Map callbacks = [:]
 
-	SimulationInput() {
-		loopForInput()
+	private SimulationInput() {
+		input = new ConcurrentLinkedQueue<String>()
+        loopForInput()
 	}
 
 	void loopForInput() {
 		inputThread = new Thread({
 			while(!simulationStopped) {
 				String input = System.console().readLine()
-				SimulationInput.getInstance().add(input)
+                simulationInput.input.add(input)
 			}
 		})
 		inputThread.start()
@@ -23,7 +24,7 @@ class SimulationInput {
 
 	
 	void processInput() {
-		String command = input.poll() {
+		String command = input.poll() 
 		while(command) {
 			Closure callback = callbacks.get(command)
 			if(callback) callback()

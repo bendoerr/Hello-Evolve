@@ -17,22 +17,25 @@ class Simulation {
     static void bootstrap() {
         Object.metaClass.getOptions {-> SystemOptions.getInstance() }
         Object.metaClass.getRandom {-> SimRandom.getInstance() }
-	Object.metaClass.getSimulationStopped { -> SimulationStopped.getInstance() }
+        Object.metaClass.getSimulationStopped {-> SimulationStopped.getInstance() }
+        Object.metaClass.getSimulationInput {-> SimulationInput.getInstance()}
     }
 
     Simulation() {
         population = new Population(options['population'])
         generation = 0
-	display = new SimplePopulationDisplay()
+        display = new SimplePopulationDisplay()
     }
 
     void loop() {
         display.render(this)
-        while (!stopped) {
+        simulationInput.processInput()
+        while (!simulationStopped) {
             generation++
             population.cycle()
             display.render(this)
             if (population.isDead()) break
+            simulationInput.processInput()
         }
         println "Press ENTER to exit."
     }
