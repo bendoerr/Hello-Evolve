@@ -11,7 +11,9 @@ class SimulationInput {
 
 	private SimulationInput() {
 		input = new ConcurrentLinkedQueue<String>()
-        loopForInput()
+        if(System.console()) {
+            loopForInput()
+        }
 	}
 
 	void loopForInput() {

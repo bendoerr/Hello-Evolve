@@ -1,0 +1,38 @@
+apply plugin: 'groovy'
+
+description = "Hevollo is a super simple life simulator. Insipired by simple 'Hello World' evolutionary algorithms/programs."
+version = '1.0-SNAPSHOT'
+group = 'me.bendoerr'
+
+repositories {
+    mavenCentral()
+    mavenRepo urls: "http://m2repo.spockframework.org/snapshots"
+    mavenRepo urls: "http://m2repo.spockframework.org/releases"
+}
+
+dependencies {
+    groovy "org.codehaus.groovy:groovy-all:1.8.0"
+    runtime "commons-cli:commons-cli:1.2"
+
+    testCompile "org.spockframework:spock-core:0.6-groovy-1.8-SNAPSHOT"
+    testCompile "junit:junit:4.8.1"
+}
+sourceCompatibility = 1.6
+
+jar {
+    from configurations.runtime
+    manifest {
+        attributes 'Main-Class': 'me.bendoerr.hevollo.Simulation',
+                'Class-Path': configurations.runtime.collect { it.name }.join(' ')
+    }
+}
+
+task start(dependsOn: 'classes', type: JavaExec) {
+    main = 'me.bendoerr.hevollo.Simulation'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task startJar(dependsOn: 'jar', type: JavaExec) {
+    main = 'me.bendoerr.hevollo.Simulation'
+    classpath = files("${libsDir}${File.separator}${archivesBaseName}-${version}.jar")
+}
