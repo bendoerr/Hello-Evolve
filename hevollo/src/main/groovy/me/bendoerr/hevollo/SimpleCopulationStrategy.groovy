@@ -1,6 +1,6 @@
 package me.bendoerr.hevollo
 
-class SimpleCopulationStrategy implements CopulationStrategy {
+class SimpleCopulationStrategy extends CopulationStrategy {
 
     List<Organism> getChildren(Mates mates) {
         if (random.getBoolean(0.20)) return []
@@ -12,27 +12,8 @@ class SimpleCopulationStrategy implements CopulationStrategy {
             dna << crossover(p1Genes[i], p2Genes[i])
         }
 
-        return [new Organism(mutate(newDna))]
+        return [new Organism(mutationAlgorithm.mutate(newDna))]
     }
 
-    String crossover(Gene p1, Gene p2) {
-        Boolean p1even = (p1.encodingNumber % 2) == 0
-        Boolean p2even = (p2.encodingNumber % 2) == 0
-
-        if (p1 && p2) {
-            return p1.dnaSequance
-        } else if (!p1 && !p2) {
-            return p2.dnaSequance
-        }
-        return random.getBoolean() ? p1.dnaSequance : p2.dnaSequance
-    }
-
-    String mutate(String dna) {
-        List bases = dna.toList()
-        (0..random.getInt(5)).each {
-            bases[random.getInt(dna.size())] = random.getString(Genome.BASES, 1)
-        }
-        return bases.join('')
-    }
 }
 

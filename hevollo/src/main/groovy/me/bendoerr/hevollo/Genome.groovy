@@ -12,7 +12,7 @@ package me.bendoerr.hevollo
 @Mixin(HashMap)
 class Genome {
     private static final MAX_LENGTH = 55
-    private static final BASES = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    static final BASES = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     String dna
 
     Genome() {
