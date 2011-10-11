@@ -9,6 +9,7 @@ class Population {
 
     PairStrategy pairing
     CopulationStrategy copulation
+    Food foodSource = Food.getInstance()
 
     Population(Integer initialSize) {
         addAll((1..initialSize).collect { new Organism() })
@@ -36,17 +37,12 @@ class Population {
     }
 
     void cycle() {
+        foodSource.reset()
+
         // Eat
-        each { it.eat() }
+        sortByFitness().each { it.eat() }
 
         // Bread
-        /*
-       How does this work. Breeding happens population wide. From the most fitness to the least.
-       Each organism gets a chance to pick a mate from the available pool. Once picked the picked one is
-       removed from the available pool. Organisms will generally pick an organism with the highest fitness
-       ( try trournamate selection too) unless it has a it has decided to only choose same color organisms
-       which it will then choose the highest fitness organism of the same color.
-        */
         List children = []
         pairing.mate(this).each {mates ->
             children.addAll copulation.getChildren(mates)

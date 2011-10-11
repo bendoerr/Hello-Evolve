@@ -1,7 +1,7 @@
 package me.bendoerr.hevollo
 
 enum ColorPrefTrait {
-    NOPREF(0.0), PREF(0.45), STRONGPREF(0.80)
+    NOPREF(0.0), PREF(0.55), STRONGPREF(0.95)
 
     BigDecimal colorPref
 

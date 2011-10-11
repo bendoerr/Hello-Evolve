@@ -12,6 +12,8 @@ class Organism implements Comparable<Organism> {
     String color
     BigDecimal colorPref
 
+    Food foodSource = Food.getInstance()
+
     Organism() {
         genome = new Genome()
         initialize()
@@ -33,7 +35,8 @@ class Organism implements Comparable<Organism> {
     }
 
     void eat() {
-        if (!random.getBoolean(chanceToEat)) {
+        Boolean strengthToFightForFood = random.getBoolean(chanceToEat)
+        if (!strengthToFightForFood || strengthToFightForFood && !foodSource.take()) {
             life--
         }
     }
