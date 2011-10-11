@@ -9,9 +9,15 @@ target
 *.jar
 *.war
 *.ear
+global-groovy.log
 
 # IntelliJ
 *.iml
 *.ipr
 *.iws
 .idea
+soapui*
+
+#Gradle 
+.gradle
+build
