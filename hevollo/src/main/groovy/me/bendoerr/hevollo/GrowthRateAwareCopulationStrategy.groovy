@@ -7,7 +7,7 @@ class GrowthRateAwareCopulationStrategy extends CopulationStrategy {
     BigDecimal chanceToReproduce = options['chanceToReproduce', 0.80]
     BigDecimal chanceToReproducePenalty = options['chanceToReproducePenalty', -0.30]
     BigDecimal chanceToReproduceBonus = options['chanceToReproduceBonus', 0.15]
-    BigDecimal chanceToReproduceBonusGrowthRate = options['chanceToReproduceBonusGrowthRate', -0.1]
+    BigDecimal chanceToReproduceBonusGrowthRate = options['chanceToReproduceBonusGrowthRate', -0.08]
     BigDecimal chanceToReproducePenaltyGrowthRate = options['chanceToReproducePenaltyGrowthRate', 0.05]
 
     private Population population
@@ -25,13 +25,12 @@ class GrowthRateAwareCopulationStrategy extends CopulationStrategy {
         growthRate < chanceToReproduceBonusGrowthRate ? chanceToReproduceBonus :
             growthRate > chanceToReproducePenaltyGrowthRate ? chanceToReproducePenalty : 0
         )
-
         if (!random.getBoolean(chance)) return []
         else return reproduce(mates)
     }
 
     List reproduce(Mates mates) {
-        Integer numberOfChildren = (random.getFraction() * random.getFraction() * random.getFraction() * maxChildren) + 1
+        Integer numberOfChildren = (random.getFraction() * random.getFraction() * maxChildren) + 1
         (1..numberOfChildren).collect {
             new Organism(mutationAlgorithm.mutate(crossover(mates)))
         }

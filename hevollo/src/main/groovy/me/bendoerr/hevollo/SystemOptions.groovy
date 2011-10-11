@@ -4,7 +4,7 @@ package me.bendoerr.hevollo
 class SystemOptions {
     static final String OPTIONS_USAGE = "Simulation.groovy [options]"
     static final String OPTIONS_USAGE_HEADER = """
-${'==Description'.padRight(20,'=')}
+${'==Description'.padRight(20, '=')}
 Hevollo is a super simple life simulator. Insipired by simple 'Hello World' evolutionary algorithms/programs.
 
 Organisms exist in populations They only have a few basic attributes: life, strength and color. Each Organism has a dna sequence which is represented as a String of characters (a-zA-Z0-9). These strings are divided up into groups which represent the gene for each trait.
@@ -35,11 +35,11 @@ ${'==Options'.padRight(20, '=')}
             strengthAverageMax: [defaultValue: 419, type: Integer, args: 1, argName: 'bound'],
             strengthStrongMin: [defaultValue: 420, type: Integer, args: 1, argName: 'bound'],
             strengthStrongMax: [defaultValue: 620, type: Integer, args: 1, argName: 'bound'],
-            colorPrefNoPrefMin: [defaultValue: 201, type: Integer, args: 1, argName: 'bound'],
-            colorPrefNoPrefMax: [defaultValue: 419, type: Integer, args: 1, argName: 'bound'],
+            colorPrefNoPrefMin: [defaultValue: 358, type: Integer, args: 1, argName: 'bound'],
+            colorPrefNoPrefMax: [defaultValue: 371, type: Integer, args: 1, argName: 'bound'],
             colorPrefPrefMin: [defaultValue: 10, type: Integer, args: 1, argName: 'bound'],
-            colorPrefPrefMax: [defaultValue: 200, type: Integer, args: 1, argName: 'bound'],
-            colorPrefStrongPrefMin: [defaultValue: 420, type: Integer, args: 1, argName: 'bound'],
+            colorPrefPrefMax: [defaultValue: 357, type: Integer, args: 1, argName: 'bound'],
+            colorPrefStrongPrefMin: [defaultValue: 372, type: Integer, args: 1, argName: 'bound'],
             colorPrefStrongPrefMax: [defaultValue: 620, type: Integer, args: 1, argName: 'bound'],
             colorRedMin: [defaultValue: 10, type: Integer, args: 1, argName: 'bound'],
             colorRedMax: [defaultValue: 200, type: Integer, args: 1, argName: 'bound'],
@@ -65,14 +65,14 @@ ${'==Options'.padRight(20, '=')}
 
         cli.h longOpt: 'help', 'Prints this help message'
 
-        availableOptions.each {k,v->
+        availableOptions.each {k, v ->
             Map usageMap = [longOpt: k]
-            if(v.args) usageMap.args = v.args
-            if(v.argName) usageMap.argName = v.argName
+            if (v.args) usageMap.args = v.args
+            if (v.argName) usageMap.argName = v.argName
 
             String desc = v.desc ?: "Default Value: ${v.defaultValue}, ".padRight(20) + "Type: ${v.type.getSimpleName()}"
 
-            if(v.short) {
+            if (v.short) {
                 cli."${v.short}"(usageMap, desc)
             } else {
                 cli._(usageMap, desc)
@@ -90,7 +90,7 @@ ${'==Options'.padRight(20, '=')}
     }
 
     Object getProperty(String name) {
-        if(name == 'cli') return cli
+        if (name == 'cli') return cli
 
         Object prop = options.getProperty(name)
 

@@ -10,8 +10,12 @@ class Population {
     Population(Integer initialSize) {
         addAll((1..initialSize).collect { new Organism() })
 
-        switch (options['pairStrategy', 'simple']) {
+        switch (options['pairStrategy', 'colorAware']) {
+            case 'colorAware':
+                pairing = new ColorAwarePairStrategy()
+                break
             case 'simple':
+            default:
                 pairing = new SimplePairStrategy()
         }
 
