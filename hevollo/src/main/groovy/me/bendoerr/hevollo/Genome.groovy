@@ -7,7 +7,7 @@ package me.bendoerr.hevollo
  * \_/\________/\_/\________/\_/\________/\_/\________/\_/
  * Jnk          Jnk          Jnk          Jnk          Jnk
  *     Base         Strength     Color        Color
- *     Longevity                              Perference
+ *     Longevity                              Preference
  */
 @Mixin(HashMap)
 class Genome {
