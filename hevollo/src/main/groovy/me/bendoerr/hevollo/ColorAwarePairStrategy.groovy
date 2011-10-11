@@ -7,21 +7,27 @@ class ColorAwarePairStrategy implements PairStrategy {
         return matchMates(ordered)
     }
 
-    private List<Mates> matchMates(List<Organism> ordered) {
+    protected List<Mates> matchMates(List<Organism> ordered) {
         if (ordered.size() < 2) return []
+        Mates mates = nextMates(ordered)
+        if (mates == null) return []
+        return matchMates(ordered) + mates
+    }
 
+    protected Mates nextMates(List<Organism> ordered) {
         Organism p1 = ordered.remove(0)
+        Organism p2 = getAttractiveMate(p1, ordered)
 
-        // Find the next possible mate
-        List possible = getAttractiveColors(p1)
-        Organism p2 = ordered.find {
+        if (!p2) return null
+        ordered.remove(p2)
+        new Mates(p1, p2)
+    }
+
+    protected Organism getAttractiveMate(Organism mate, List<Organism> ordered) {
+        List possible = getAttractiveColors(mate)
+        return ordered.find {
             (possible).contains(it.color)
         }
-
-        if (!p2) return []
-        ordered.remove(p2)
-
-        return matchMates(ordered) + new Mates(p1, p2)
     }
 
     private getAttractiveColors(Organism o) {

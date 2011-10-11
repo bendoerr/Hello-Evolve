@@ -7,13 +7,23 @@ class SimplePopulationDisplay implements Display {
         Integer gen = sim.generation
         Population pop = sim.population
 
+        if (pop.isEmpty()) {
+            println "Dead"
+            return
+        }
+
         StringBuffer sb = new StringBuffer()
+        Integer padding = 20
         sb << ("=" * 83) + "\n"
-        sb << "Generation:".padRight(15) + gen + "\n"
-        sb << "Size:".padRight(15) + pop.size() + "\n"
+        sb << "Generation:".padRight(padding) + gen + "\n"
+        sb << "Size:".padRight(padding) + pop.size() + "\n"
+        sb << "Growth Rate:".padRight(padding) + pop.averageGrowthRate + "\n"
+        sb << "Last Growth Rate:".padRight(padding) + pop.lastGrothRate + "\n"
+        sb << "Avg Fitness:".padRight(padding) + pop.averageFitness() + "\n"
         sb << ("-" * 83) + "\n"
 
-        pop.clone().sort { it.fitness }.each {
+        List ordered = pop.sortByFitness()
+        ordered[0..(ordered.size() > 10 ? 10 : ordered.size() - 1)].each {
             StringBuffer lb = new StringBuffer()
             lb << "$it.fitness".padRight(5)
             lb << "$it.baseLife".padRight(2)
@@ -29,8 +39,8 @@ class SimplePopulationDisplay implements Display {
     }
 
     String color(String color, def s) {
-        if(windowsColors) return s
-        
+        if (windowsColors) return s
+
         Map colors = [
                 red: '[1;31m',
                 orange: '[0;31m',

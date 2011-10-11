@@ -5,8 +5,8 @@ class GrowthRateAwareCopulationStrategy extends CopulationStrategy {
     // Settings
     Integer maxChildren = 3
     BigDecimal chanceToReproduce = options['chanceToReproduce', 0.80]
-    BigDecimal chanceToReproducePenalty = options['chanceToReproducePenalty', -0.30]
-    BigDecimal chanceToReproduceBonus = options['chanceToReproduceBonus', 0.15]
+    BigDecimal chanceToReproducePenalty = options['chanceToReproducePenalty', -0.60]
+    BigDecimal chanceToReproduceBonus = options['chanceToReproduceBonus', 0.10]
     BigDecimal chanceToReproduceBonusGrowthRate = options['chanceToReproduceBonusGrowthRate', -0.08]
     BigDecimal chanceToReproducePenaltyGrowthRate = options['chanceToReproducePenaltyGrowthRate', 0.05]
 
@@ -17,7 +17,7 @@ class GrowthRateAwareCopulationStrategy extends CopulationStrategy {
     }
 
     BigDecimal getGrowthRate() {
-        population.getLastGrowthRate()
+        population.getAverageGrowthRate()
     }
 
     List getChildren(Mates mates) {

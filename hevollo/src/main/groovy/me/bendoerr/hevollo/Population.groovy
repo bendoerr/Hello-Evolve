@@ -2,17 +2,23 @@ package me.bendoerr.hevollo
 
 @Mixin(ArrayList)
 class Population {
+    private List lastFewAverageGrowthRates = []
+    BigDecimal averageGrowthRate
+    BigDecimal lastGrothRate
+    Integer delta
 
-    BigDecimal lastGrowthRate
     PairStrategy pairing
     CopulationStrategy copulation
 
     Population(Integer initialSize) {
         addAll((1..initialSize).collect { new Organism() })
 
-        switch (options['pairStrategy', 'colorAware']) {
+        switch (options['pairStrategy', 'colorAndFitness']) {
             case 'colorAware':
                 pairing = new ColorAwarePairStrategy()
+                break
+            case 'colorAndFitness':
+                pairing = new ColorAndFitnessPairStrategy()
                 break
             case 'simple':
             default:
@@ -57,9 +63,14 @@ class Population {
             dead
         }
 
-        Integer change = size() - startSize + children.size()
-        lastGrowthRate = change / startSize
-        println "!!!!!!!!!!!!!!!! ${size()} left and adding ${children.size()} [change $change] and rate of $lastGrowthRate"
+        delta = size() - startSize + children.size()
+        lastGrothRate = delta / startSize
+        if (lastFewAverageGrowthRates.size() > 3) {
+            lastFewAverageGrowthRates.pop()
+        }
+        lastFewAverageGrowthRates.add(0, lastGrothRate)
+        averageGrowthRate = lastFewAverageGrowthRates.sum() / lastFewAverageGrowthRates.size()
+
         // New Life
         addAll children
     }
@@ -74,8 +85,12 @@ class Population {
 
     List<Organism> sortByFitness(Boolean reverse = false) {
         return clone().sort {l, r ->
-            if (reverse) r <=> l
-            else l <=> r
+            if (reverse) l <=> r
+            else r <=> l
         }
+    }
+
+    Integer averageFitness() {
+        sum { it.fitness } / size()
     }
 }
