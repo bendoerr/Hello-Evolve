@@ -31,7 +31,18 @@ class Organism implements Comparable<Organism> {
         colorPref = genome.get('colorPref').encodedTrait
 
         life = baseLife
-        fitStrat = new LongevityStrengthFitness(this)
+
+        switch (options['fitnessStrategy', 'base']) {
+            case 'withDna':
+                fitStrat = new LongevityStrengthWeightedFitness(this)
+                break
+            case 'withJunk':
+                fitStrat = new LongevityStrengthJunkFitness(this)
+                break
+            case 'base':
+            default:
+                fitStrat = new LongevityStrengthFitness(this)
+        }
     }
 
     void eat() {

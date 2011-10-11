@@ -1,7 +1,7 @@
 package me.bendoerr.hevollo
 
 class LongevityStrengthFitness implements Fitness {
-    private Organism organism
+    protected Organism organism
 
     LongevityStrengthFitness(Organism organism) {
         this.organism = organism

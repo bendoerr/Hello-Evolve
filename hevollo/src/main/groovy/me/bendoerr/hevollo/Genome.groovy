@@ -41,5 +41,17 @@ class Genome {
     List<Gene> ordered() {
         values().sort { it.getStartIndex() }
     }
+
+    Integer dnaValue() {
+        dna.inject(0) {value, base ->
+            value + Genome.BASES.indexOf(base) + 1
+        }
+    }
+
+    Integer junkValue() {
+        (0..4).inject(0) {sum, i ->
+            sum + get("junk$i").encodingNumber
+        }
+    }
 }
 
