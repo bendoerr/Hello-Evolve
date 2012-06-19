@@ -1,3 +1,13 @@
+# Usage
+
+    gradle start
+    
+Sometimes a population will die out pretty quickly. Sometimes they get some good mutations that are able to keep the population alive for hundreds and thousands of geneations. There are presuares that keep a populations size around 1000 as the amount of food past that point becomes scarse. I find it quite fun to inspect what specific encodings for traits are becomming successful and will one day add some more details on that sort of stuff. 
+
+# Details
+
+*This may not be up to date as it recorded more of the original idea.*
+
 ## DNA
 
 * String a-Z0-9
@@ -32,6 +42,8 @@ During each generation the organism needs to eat. If it doesn't eat it losses on
 * *420-620* Violet
 
 Organisms can only reproduce with other same color organisms or organisms of a color adjacent on the list. 
+
+*Color codes are tuned to my implementation of the Solarized color scheme on Windows.*
 
 **Color Preference**
 Chance Organisms will choose the same color even if there is an organism with an adjacent color with a higher fitness
