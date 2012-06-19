@@ -1,4 +1,4 @@
-*The guts of this is the hevollo project.*
+*The guts of this is the hevollo project.* **See <https://github.com/bendoerr/Hello-Evolve/tree/master/hevollo>**
 
 ## Inspiration
 
