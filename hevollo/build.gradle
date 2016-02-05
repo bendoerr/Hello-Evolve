@@ -6,14 +6,13 @@ group = 'me.bendoerr'
 
 repositories {
     mavenCentral()
-    mavenRepo urls: "http://m2repo.spockframework.org/snapshots"
 }
 
 dependencies {
-    groovy "org.codehaus.groovy:groovy-all:1.8.0"
-    runtime "commons-cli:commons-cli:1.2"
+    compile "org.codehaus.groovy:groovy-all:1.8.0"
+    compile "commons-cli:commons-cli:1.2"
 
-    testCompile "org.spockframework:spock-core:0.6-groovy-1.8-SNAPSHOT"
+    testCompile "org.spockframework:spock-core:0.6-groovy-1.8-rc1"
     testCompile "junit:junit:4.8.1"
 }
 sourceCompatibility = 1.6
